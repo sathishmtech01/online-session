@@ -17,6 +17,6 @@
     - Start Visualization
         streamlit run app.py
 
-#### UI 
+#### Stream Lit App UI 
 
-![img.png](streamlit_app.png)
+![Stream Lit App page](streamlit_app.png)
