@@ -1,13 +1,11 @@
+import time
+
 from kafka import KafkaConsumer
 import csv
 import ast
 from datetime import datetime
 from transform import check_temperature_and_humidity
-# Get current date and time with seconds
-current_time = datetime.now()
 
-# Format the datetime to include seconds
-formatted_time = current_time.strftime('%Y-%m-%d %H:%M:%S')
 # csv_file = 'output/sensor_data_'+str(formatted_time)+'.csv'
 # Create Kafka Consumer
 consumer = KafkaConsumer(
@@ -25,10 +23,18 @@ file_index = 1
 
 # Function to get new file name based on file index
 def get_new_file_name():
+
+    # Get current date and time with seconds
+    current_time = datetime.now()
+
+    # Format the datetime to include seconds
+    formatted_time = current_time.strftime('%Y-%m-%d %H:%M:%S')
     return f'output/sensor_data_'+str(formatted_time)+'.csv'
 
 # Open the first CSV file
-csv_file = open(get_new_file_name(), mode='w', newline='')
+file_name = get_new_file_name()
+print(file_name)
+csv_file = open(file_name, mode='w', newline='')
 csv_writer = csv.writer(csv_file)
 
 
@@ -50,7 +56,7 @@ try:
         record_count += 1
 
         # If 20 records are written, close the current file and open a new one
-        if record_count == 20:
+        if record_count == 100:
             # Close the current file
             csv_file.close()
 
@@ -59,7 +65,9 @@ try:
             record_count = 0
 
             # Open a new CSV file and write the header again
-            csv_file = open(get_new_file_name(), mode='w', newline='')
+            file_name = get_new_file_name()
+            print(file_name)
+            csv_file = open(file_name, mode='w', newline='')
             csv_writer = csv.writer(csv_file)
 
 except KeyboardInterrupt:

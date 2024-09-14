@@ -31,5 +31,5 @@ def check_temperature_and_humidity(temperature, humidity):
 temperature = 20  # in Celsius
 humidity = 65     # in percentage
 
-result = check_temperature_and_humidity(temperature, humidity)
-print(result)
+# result = check_temperature_and_humidity(temperature, humidity)
+# print(result)
