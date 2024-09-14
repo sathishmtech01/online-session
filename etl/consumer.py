@@ -11,7 +11,7 @@ formatted_time = current_time.strftime('%Y-%m-%d %H:%M:%S')
 # csv_file = 'output/sensor_data_'+str(formatted_time)+'.csv'
 # Create Kafka Consumer
 consumer = KafkaConsumer(
-    'test-topic',                      # Topic to subscribe to
+    'vit-demo',                      # Topic to subscribe to
     bootstrap_servers=['localhost:9092'],  # Kafka broker(s)
     auto_offset_reset='earliest',     # Start from the earliest available message
     enable_auto_commit=True,          # Enable auto-commit of offsets
@@ -49,8 +49,8 @@ try:
         print(f"Written to CSV: {row_value}")
         record_count += 1
 
-        # If 100 records are written, close the current file and open a new one
-        if record_count == 100:
+        # If 20 records are written, close the current file and open a new one
+        if record_count == 20:
             # Close the current file
             csv_file.close()
 

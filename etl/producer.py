@@ -1,8 +1,8 @@
-import json
 import time
 import random
 from kafka import KafkaProducer
 import json
+
 # Initialize Kafka producer
 producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
@@ -18,7 +18,7 @@ def produce_data():
             'humidity': random.uniform(input_data['humidity']['min'], input_data['humidity']['max']),
             'timestamp': time.time()
         }
-        producer.send('test-topic', value=data)
+        producer.send('vit-demo', value=data)
         print(f"Sent: {data}")
         time.sleep(1)
 

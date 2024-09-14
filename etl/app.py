@@ -4,7 +4,7 @@ import glob
 import matplotlib.pyplot as plt
 
 # Streamlit dashboard settings
-st.header("Temperature and humidity Dashboard")
+st.header("Temperature and humidity Dashboard - VIT")
 st.markdown("-------------------------------")
 # Create a DataFrame to store data
 import os
@@ -12,6 +12,7 @@ mypath = os.getcwd()
 path = mypath+"/output/sensor_*.csv"
 csv_files = glob.glob(path)
 print(csv_files)
+
 # Read and concatenate all CSV files into a single DataFrame
 data_frames = []
 for file in csv_files:
@@ -25,6 +26,7 @@ for file in csv_files:
 # Concatenate all DataFrames into one
 combined_df = pd.concat(data_frames, ignore_index=True)
 
+# Transform
 data = combined_df
 data['timestamp'] = pd.to_datetime(data['timestamp'])
 
