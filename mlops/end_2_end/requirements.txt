@@ -1,5 +1,6 @@
 pandas
 scikit-learn
+wordcloud
 fastapi
 uvicorn
 streamlit
